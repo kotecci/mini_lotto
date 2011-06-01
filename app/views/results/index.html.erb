@@ -1,0 +1,117 @@
+<%# form_remote_tag :url => { :action => :index},  :update => "result" do %>
+<%#= submit_tag "Analyze", :disable_with => "Please wait..." %>
+<%# end %>
+<style>
+table,th, td
+{
+border: 1px solid black;
+}
+</style>
+
+
+<script>
+  jQuery(function($) {
+  // create a convenient toggleLoading function
+  var toggleLoading = function() { $("#loading").toggle() };
+
+  $("#results_form")
+    //.bind("ajax:loading",  toggleLoading)
+    //.bind("ajax:complete", toggleLoading)
+    .bind("ajax:success", function(event, data, status, xhr) {
+      $("#info").html(data);
+    });
+});
+</script>
+
+<div id="info">aaaaaa</div>
+
+<%= form_tag '/results', :id=>'results_form',  :remote => true  do  %>
+NO <%= text_field_tag 'no' %>
+<br>
+SET_UP<%= select_tag 'set_up', options_for_select(['',0,1,2,3,4,5],3) %>
+SET_DOWN<%= select_tag 'set_down', options_for_select(['',0,1,2,3,4,5],2) %>
+SET_LEFT<%= select_tag 'set_left', options_for_select(['',0,1,2,3,4,5],5) %>
+SET_RIGHT<%= select_tag 'set_right', options_for_select(['',0,1,2,3,4,5],5) %>
+<br>
+SET_1_21<%= select_tag 'set_1_21', options_for_select(['',0,1,2,3,4,5],5) %>
+SET_22_42<%= select_tag 'set_22_42', options_for_select(['',0,1,2,3,4,5],5) %>
+<br>
+SET_1_7<%= select_tag 'set_1_7', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_8_14<%= select_tag 'set_8_14', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_15_21<%= select_tag 'set_15_21', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_22_28<%= select_tag 'set_22_28', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_29_36<%= select_tag 'set_29_36', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_37_42<%= select_tag 'set_37_42', options_for_select(['',0,1,2,3,4,5],4) %>
+<br>
+SET_PRIME<%= select_tag 'set_prime', options_for_select(['',0,1,2,3,4,5]) %>
+<br>
+SET_1_9<%= select_tag 'set_1_9', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_10_19<%= select_tag 'set_10_19', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_20_29<%= select_tag 'set_20_29', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_30_39<%= select_tag 'set_30_39', options_for_select(['',0,1,2,3,4,5],4) %>
+SET_40_42<%= select_tag 'set_40_42', options_for_select(['',0,1,2,3,4,5],3) %>
+<br>
+EVEN<%= select_tag 'no_of_even', options_for_select(['',0,1,2,3,4,5],5) %>
+ODD<%= select_tag 'no_of_odd', options_for_select(['',0,1,2,3,4,5],5) %>
+<br>
+NO_END_0<%= select_tag 'no_end_0', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_1<%= select_tag 'no_end_1', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_2<%= select_tag 'no_end_2', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_3<%= select_tag 'no_end_3', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_4<%= select_tag 'no_end_4', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_5<%= select_tag 'no_end_5', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_6<%= select_tag 'no_end_6', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_7<%= select_tag 'no_end_7', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_8<%= select_tag 'no_end_8', options_for_select(['',0,1,2,3,4,5],3) %>
+NO_END_9<%= select_tag 'no_end_9', options_for_select(['',0,1,2,3,4,5],3) %>
+<br>
+D2<%= select_tag 'd2', options_for_select(['',0,1,2,3,4,5],5) %>
+D3<%= select_tag 'd3', options_for_select(['',0,1,2,3,4,5],4) %>
+D4<%= select_tag 'd4', options_for_select(['',0,1,2,3,4,5],4) %>
+D5<%= select_tag 'd5', options_for_select(['',0,1,2,3,4,5],4) %>
+D6<%= select_tag 'd6', options_for_select(['',0,1,2,3,4,5],4) %>
+D7<%= select_tag 'd7', options_for_select(['',0,1,2,3,4,5],4) %>
+D8<%= select_tag 'd8', options_for_select(['',0,1,2,3,4,5],4) %>
+D9<%= select_tag 'd9', options_for_select(['',0,1,2,3,4,5],4) %>
+<br>
+SUM<%= text_field_tag 'sum' %>
+
+<%= submit_tag 'Load Data' %>
+<% end %>
+
+<table style="   border: 1px solid black;border-collapse: collapse; ">
+  <tr>
+  <%
+	['Nr', 'Data', 'n1', 'n2', 'n3', 'n4', 'n5', 'UP', 'DOWN', 'LEFT', 'RIGHT', 'ID'].each do |col| %>
+	<td><%= col  %></td>
+  <% end %>
+  <% (1..34).each do |p| 
+		(-6..-6).each do |pp|%>
+		<td><%= 'POW_' + 'PLUS_' +p.to_s + '_' + pp.to_s %></td>
+		<% end %>
+  <% end %>
+  </tr>
+  <% @results.each do |r| %>
+  <tr>
+	<% [:no, :date, :n1, :n2, :n3, :n4, :n5, :set_up, :set_down, :set_left, :set_right, :combination_id].each do |col| %>
+		<td><%= r.send(col) %></td>
+	<% end %>
+	  <% (1..34).each do |p| 
+		(-6..-6).each do |pp|%>
+		<td><%= r.how_many_repeated_add(p,pp) %></td>
+		<% end %>
+	<% end %>
+	
+  </tr>
+  <% end %>
+</table>
+
+
+
+
+
+
+
+
+
+

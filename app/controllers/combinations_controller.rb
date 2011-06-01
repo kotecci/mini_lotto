@@ -1,0 +1,2 @@
+class CombinationsController < ApplicationController
+end

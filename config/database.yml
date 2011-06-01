@@ -1,0 +1,30 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+#
+#
+# Be sure to use new-style password hashing:
+#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+development:
+  host: 10.0.0.2
+  #host: localhost
+  adapter: postgresql
+  database: lotto-development
+  username: kotecci
+  password: 12qwaszx
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+#test:
+#  host: 10.0.0.2
+#  adapter: jdbcmysql
+#  database: lotto-development_test
+#  username: kotecci
+#  password: 12qwaszx
+#
+#production:
+#  host: 10.0.0.2
+#  adapter: jdbcmysql
+#  database: lotto-development_production
+#  username: kotecci
+#  password: 12qwaszx
+
