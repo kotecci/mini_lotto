@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110530195632) do
+ActiveRecord::Schema.define(:version => 20110604101337) do
 
   create_table "combinations", :force => true do |t|
     t.integer "n1"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(:version => 20110530195632) do
     t.integer "set_20_29"
     t.integer "set_30_39"
     t.integer "set_40_42"
+    t.integer "set_a"
+    t.integer "set_b"
+    t.integer "set_c"
+    t.integer "set_d"
+    t.integer "set_s"
+    t.integer "set_t"
+    t.integer "set_u"
+    t.integer "set_w"
+    t.integer "set_x"
+    t.integer "set_y"
+    t.integer "set_z"
   end
 
   create_table "most_breaks", :force => true do |t|
@@ -373,6 +384,17 @@ ActiveRecord::Schema.define(:version => 20110530195632) do
     t.integer "set_40_42"
     t.date    "date"
     t.integer "combination_id"
+    t.integer "set_a"
+    t.integer "set_b"
+    t.integer "set_c"
+    t.integer "set_d"
+    t.integer "set_s"
+    t.integer "set_t"
+    t.integer "set_u"
+    t.integer "set_w"
+    t.integer "set_x"
+    t.integer "set_y"
+    t.integer "set_z"
   end
 
 end

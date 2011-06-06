@@ -4,8 +4,8 @@
 # Be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 development:
-  host: 10.0.0.2
-  #host: localhost
+  #host: 10.0.0.2
+  host: localhost
   adapter: postgresql
   database: lotto-development
   username: kotecci

@@ -40,7 +40,7 @@ class ResultsController < ApplicationController
       (n1 = (n2-1) AND n4 = (n5-1)) OR
       (n2 = (n3-1) AND n4 = (n5-1)) OR
       (n1 = (n2-1) AND n3 = (n4-1))
-      )'
+      ) AND set_a <4 and set_b<4 and set_c <4'
 
     conditions2 += ' AND NOT (
       (n1 = (n2-1) AND n2 = (n3-1)) OR

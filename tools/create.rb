@@ -66,7 +66,11 @@ def stat_combination(c)
 	:set_29_36 => 0, :set_37_42 => 0,
 	:set_prime => 0,
 	:set_1_9 => 0, :set_10_19 => 0, :set_20_29 => 0, :set_30_39 => 0, :set_40_42 => 0,
-	:d2 => 0, :d3 => 0, :d4 => 0, :d5 => 0, :d6 => 0, :d7 => 0, :d8 => 0, :d9 => 0
+	:d2 => 0, :d3 => 0, :d4 => 0, :d5 => 0, :d6 => 0, :d7 => 0, :d8 => 0, :d9 => 0,
+		:set_a => 0, :set_b => 0, :set_c  => 0,	:set_d  => 0,
+	:set_s  => 0, :set_t  => 0,	:set_u  => 0, :set_w  => 0,
+	:set_x  => 0, :set_y  => 0,	:set_z  => 0
+	
   }
   
   set_up = [1, 2, 3, 4, 8, 9, 10, 11, 15, 16, 17, 18, 22, 23, 24, 25, 29, 30, 31, 32, 36, 37, 38, 39]
@@ -88,6 +92,21 @@ def stat_combination(c)
   set_20_29 = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
   set_30_39 = [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
   set_40_42 = [40, 41, 42]
+  
+  	set_a = [1,2,3,4,8,9,10,11,15,16,17,18]
+	set_b = [22,23,24,29,30,31,36,37,38]
+	set_c = [5,6,7,12,13,14,19,20,21]
+	set_d = [25,26,27,28,32,33,34,35,39,40,41,42]
+	
+	set_s = [1,8,15,22,29,36]
+	set_t = [2,9,16,23,30,37]
+	set_u = [3,10,17,24,31,38]
+	set_w = [4,11,18,25,32,39]
+	set_x = [5,12,19,26,33,40]
+	set_y = [6,13,20,27,34,41]
+	set_z = [7,14,21,28,35,42]
+  
+  
   
   c.each do |n|
     n = n.to_i
@@ -122,6 +141,20 @@ def stat_combination(c)
 	stats[:d7] += 1 if n%7 == 0
 	stats[:d8] += 1 if n%8 == 0
 	stats[:d9] += 1 if n%9 == 0
+	
+	stats[:set_a] += 1 if set_a.include?(n)
+	stats[:set_b] += 1 if set_b.include?(n)
+	stats[:set_c] += 1 if set_c.include?(n)
+	stats[:set_d] += 1 if set_d.include?(n)
+	
+	stats[:set_s] += 1 if set_s.include?(n)
+	stats[:set_t] += 1 if set_t.include?(n)
+	stats[:set_u] += 1 if set_u.include?(n)
+	stats[:set_w] += 1 if set_w.include?(n)
+	stats[:set_x] += 1 if set_x.include?(n)
+	stats[:set_y] += 1 if set_y.include?(n)
+	stats[:set_z] += 1 if set_z.include?(n)
+	
 	
     last_digit = n.to_s.last
     stats["no_end_#{last_digit}".to_sym] += 1
@@ -176,7 +209,19 @@ def parse_results
 	  :set_10_19 => stats[:set_10_19],
 	  :set_20_29 => stats[:set_20_29],
 	  :set_30_39 => stats[:set_30_39],
-	  :set_40_42 => stats[:set_40_42])
+	  :set_40_42 => stats[:set_40_42],
+	  :set_a => stats[:set_a],
+	  :set_b => stats[:set_b],
+	  :set_c => stats[:set_c],
+	  :set_d => stats[:set_d],
+	 :set_s => stats[:set_s],
+	 :set_t => stats[:set_t],
+	 :set_u =>stats[:set_u],
+	 :set_w => stats[:set_w],
+	 :set_x => stats[:set_x],
+	 :set_y => stats[:set_y],
+	 :set_z => stats[:set_z]
+	  )
 	  puts r.no
 	end
 end
@@ -237,6 +282,60 @@ def most_brak
 	end
 end
 
+def add_combination_new_sets
+	set_a = [1,2,3,4,8,9,10,11,15,16,17,18]
+	set_b = [22,23,24,29,30,31,36,37,38]
+	set_c = [5,6,7,12,13,14,19,20,21]
+	set_d = [25,26,27,28,32,33,34,35,39,40,41,42]
+	
+	set_s = [1,8,15,22,29,36]
+	set_t = [2,9,16,23,30,37]
+	set_u = [3,10,17,24,31,38]
+	set_w = [4,11,18,25,32,39]
+	set_x = [5,12,19,26,33,40]
+	set_y = [6,13,20,27,34,41]
+	set_z = [7,14,21,28,35,42]
+
+	Combination.all(:conditions => 'set_a IS NULL and id < 470000').each do |r|
+		puts r.id
+		stats = {
+		:set_a => 0, :set_b => 0, :set_c  => 0,	:set_d  => 0,
+		:set_s  => 0, :set_t  => 0,	:set_u  => 0, :set_w  => 0,
+		:set_x  => 0, :set_y  => 0,	:set_z  => 0
+		}
+		
+		combination = [r.n1, r.n2, r.n3, r.n4, r.n5]
+		combination.each do |n|
+		stats[:set_a] += 1 if set_a.include?(n)
+		stats[:set_b] += 1 if set_b.include?(n)
+		stats[:set_c] += 1 if set_c.include?(n)
+		stats[:set_d] += 1 if set_d.include?(n)
+		
+		stats[:set_s] += 1 if set_s.include?(n)
+		stats[:set_t] += 1 if set_t.include?(n)
+		stats[:set_u] += 1 if set_u.include?(n)
+		stats[:set_w] += 1 if set_w.include?(n)
+		stats[:set_x] += 1 if set_x.include?(n)
+		stats[:set_y] += 1 if set_y.include?(n)
+		stats[:set_z] += 1 if set_z.include?(n)
+		end
+		r.set_a = stats[:set_a]
+		r.set_b = stats[:set_b]
+		r.set_c = stats[:set_c]
+		r.set_d = stats[:set_d]
+		
+		r.set_s = stats[:set_s]
+		r.set_t = stats[:set_t]
+		r.set_u = stats[:set_u]
+		r.set_w = stats[:set_w]
+		r.set_x = stats[:set_x]
+		r.set_y = stats[:set_y]
+		r.set_z = stats[:set_z]
+		r.save
+	end
+end
+
+
 start = Time.now
 puts Time.now
 #puts "All combinations count: #{Combination.count}"
@@ -244,5 +343,6 @@ puts Time.now
 #parse_results
 #add_rare
 #most_often
-most_brak
+add_combination_new_sets
+#most_brak
 puts Time.now - start
